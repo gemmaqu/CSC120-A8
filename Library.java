@@ -16,6 +16,17 @@ public class Library extends Building implements LibraryRequirements {
       this.collection = new Hashtable<String,Boolean>();//empty hastable
       System.out.println("You have built a library: 📖");
     }
+    // Overloaded constructor with default number of floors = 1
+    /**
+     * constructor with default number of floor n= 1
+     * @param name
+     * @param address
+     */
+  public Library(String name, String address) {
+    super(name, address, 1);
+    this.collection = new Hashtable<String, Boolean>(); // empty hashtable
+    System.out.println("You have built a small but mighty library: 📚");
+  }
   
     /**
      * add a book to the library by adding its title
@@ -29,6 +40,22 @@ public class Library extends Building implements LibraryRequirements {
         System.out.println(title+"has already on our collection.");
       }
     }
+
+    // overloaded method for addTitle
+    /**
+     * add a book to the library by specifying its title and availability
+     * @param title The title we want to add to the library
+     * @param isAvailable Whether the book is available for checkout
+     */
+  public void addTitle(String title, boolean isAvailable){
+    if(!this.collection.containsKey(title)){
+      this.collection.put(title, isAvailable);
+      System.out.println(title + " has been added to our collection. Available: " + isAvailable);
+    } else {
+      System.out.println(title + " is already in our collection.");
+    }
+  }
+
 
     /**
      * remove a book from the library by removing the book's title
@@ -114,6 +141,20 @@ public class Library extends Building implements LibraryRequirements {
 
     }
 
+
+    public void showOptions() {//override from the Buildng class
+      System.out.println("Available options at " + this.name + ":\n + addTitle(String title) \n + returnBook(String title) \n + containsTitle(String title) \n + isAvailable(title)\n + printCollection()");
+  }
+
+
+
+    public void goToFloor(int floorNum) {
+      super.goToFloor(floorNum);
+      if(this.hasElevator == false){
+        System.out.println("Sorry, we don't have elevtaor");
+      }
+    }
+
     public static void main(String[] args) {
       Library Neilson = new Library("Neilson Library", "Neilson way 123", 5);
       Neilson.addTitle("The Little Prince");
@@ -122,6 +163,9 @@ public class Library extends Building implements LibraryRequirements {
       Neilson.checkOut("Gone with the wind");
       Neilson.returnBook("Gone with the wind");
       Neilson.printCollection();
+      Neilson.showOptions();
+      Neilson.enter();
+      Neilson.goToFloor(4);
     }
   
   }

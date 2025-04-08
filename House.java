@@ -7,6 +7,7 @@ public class House extends Building implements HouseRequirements{
    //Attributes
    private ArrayList<Student> residents; // The <Student> tells Java what kind of data we plan to store IN the ArrayList
    private boolean hasDiningRoom;
+   
 
    //Consturctor
   public House(String name, String address, int nFloors) {
@@ -15,6 +16,21 @@ public class House extends Building implements HouseRequirements{
     this.hasDiningRoom = true;
     System.out.println("You have built a house: 🏠");
   }
+
+  //overloaded constructor
+  /**
+   * a constructor with default nfloor value 1
+   * @param name
+   * @param address
+   */
+
+  public House(String name, String address) {
+    super(name, address, 1);//default to 1 floor
+    this.residents = new ArrayList<Student>();
+    this.hasDiningRoom = true;
+    System.out.println("You have built a house: 🏠");
+  }
+
   /**
    * check whether the house has a dining room
    * @return true if the house has dining room, false if not
@@ -59,6 +75,23 @@ public class House extends Building implements HouseRequirements{
       return null;
     }
   }
+  //overloaded method for moveOut()
+  /**
+ * move out student by name, checking whether the student is in the house first
+ * @param name the name of the student you want to move out 
+ * @return the student if they move out successfully, null if not
+ */
+public Student moveOut(String name){
+  for(Student s : this.residents){
+    if(s.getName().equals(name)){
+      this.residents.remove(s);
+      System.out.println(name + " has moved out of the House.");
+      return s;
+    }
+  }
+  System.out.println(name + " is not in the House.");
+  return null;
+}
 
   /**
    * check whether a student is a resident of the house
@@ -74,6 +107,24 @@ public class House extends Building implements HouseRequirements{
   }
   
 
+  public void showOptions() { //override from the building class
+    System.out.println("Available options at " + this.name + ":\n + hasDiningRoom()\n + nResidents() \n + moveIn(Student s) \n + moveOut(Student s)\n + isResident(Student s)");
+}
+
+  /**
+   * check whether a house has an elevator
+   * @return true if the house has an elevator
+   */
+  public boolean hasElevator(){
+    return this.hasElevator;
+  }
+
+  public void goToFloor(int floorNum) {
+   super.goToFloor(floorNum);
+    if(this.hasElevator == false){
+      System.out.println("Sorry, we don't have elevtaor");
+    }
+  }
 
 
   public static void main(String[] args) {
@@ -81,6 +132,9 @@ public class House extends Building implements HouseRequirements{
     House Talbot = new House("Talbot", "prospect street 25", 4);
     Talbot.moveIn(Abby);
     Talbot.isResident(Abby);
+    Talbot.showOptions();
+    Talbot.enter();
+    Talbot.goToFloor(3);
    
   }
 
