@@ -75,6 +75,8 @@ public class House extends Building implements HouseRequirements{
       return null;
     }
   }
+
+  
   //overloaded method for moveOut()
   /**
  * move out student by name, checking whether the student is in the house first
@@ -106,7 +108,9 @@ public Student moveOut(String name){
     }
   }
   
-
+  /**
+   * show available methods for a specific house
+   */
   public void showOptions() { //override from the building class
     System.out.println("Available options at " + this.name + ":\n + hasDiningRoom()\n + nResidents() \n + moveIn(Student s) \n + moveOut(Student s)\n + isResident(Student s)");
 }
@@ -119,10 +123,14 @@ public Student moveOut(String name){
     return this.hasElevator;
   }
 
+  /**
+   * @param floorNum the floor number you want to go
+   * go to the floor numebr you want to go, can't go when the building doesn't have an elevator.
+   */
   public void goToFloor(int floorNum) {
    super.goToFloor(floorNum);
     if(this.hasElevator == false){
-      System.out.println("Sorry, we don't have elevtaor");
+      System.out.println("Sorry, we don't have elevator");
     }
   }
 

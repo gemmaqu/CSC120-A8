@@ -1,6 +1,7 @@
 /* This is a stub for the Cafe class */
 public class Cafe extends Building implements CafeRequirements {
-
+    
+//please look at my reflection!!!!Thank you
 
     //attributes
     private int nCoffeeOunces; // The number of ounces of coffee remaining in inventory
@@ -94,16 +95,22 @@ public class Cafe extends Building implements CafeRequirements {
         this.nCreams += nCreams;
         this.nCups += nCups;
     }
-
+    /**
+    *Displays coffee shop operations to the console.
+    * Overrides the showOptions method from the Building class.
+    * Shows available methods for selling coffee and restocking supplies.
+    */
     public void showOptions() { //override from the building class
         System.out.println("Available options at " + this.name + ":\n + sellCoffee(size,nSugarPackets,nCreams) \n + restock(nCoffeeOunces,nSugarPackets,nCreams,nCups) \n");
     }
 
-
+    /**
+     * @param floorNum the floor number you want to go
+     * Go to the sepcific floor of the building, if the building doesn't have the floor, throw an exception
+     */
     public void goToFloor(int floorNum) {
-        super.goToFloor(floorNum);
-         if(this.hasElevator == false){
-           System.out.println("Sorry, we don't have elevtaor");
+         if(floorNum != 1){
+           throw new RuntimeException("Sorry, you can't go to other floors.");
          }
        }    
     

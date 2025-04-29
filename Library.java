@@ -15,7 +15,9 @@ public class Library extends Building implements LibraryRequirements {
       super(name, address, nFloors);
       this.collection = new Hashtable<String,Boolean>();//empty hastable
       System.out.println("You have built a library: 📖");
+    
     }
+
     // Overloaded constructor with default number of floors = 1
     /**
      * constructor with default number of floor n= 1
@@ -141,13 +143,18 @@ public class Library extends Building implements LibraryRequirements {
 
     }
 
-
+    /**
+     * show available method for a certain library
+     */
     public void showOptions() {//override from the Buildng class
       System.out.println("Available options at " + this.name + ":\n + addTitle(String title) \n + returnBook(String title) \n + containsTitle(String title) \n + isAvailable(title)\n + printCollection()");
   }
 
 
-
+  /**
+   * @param floorNum the floor number you want to go
+   * go to the floor of the building by elevator, can't go if the building doens't have elevator
+   */
     public void goToFloor(int floorNum) {
       super.goToFloor(floorNum);
       if(this.hasElevator == false){
