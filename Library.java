@@ -11,6 +11,12 @@ public class Library extends Building implements LibraryRequirements {
 
 
     //constructor
+    /**
+     * first constructor of Library
+     * @param name
+     * @param address
+     * @param nFloors
+     */
     public Library(String name, String address, int nFloors) {
       super(name, address, nFloors);
       this.collection = new Hashtable<String,Boolean>();//empty hastable

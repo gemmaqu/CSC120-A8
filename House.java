@@ -10,6 +10,12 @@ public class House extends Building implements HouseRequirements{
    
 
    //Consturctor
+   /**
+    * first constructor of House
+    * @param name
+    * @param address
+    * @param nFloors
+    */
   public House(String name, String address, int nFloors) {
     super(name, address, nFloors);
     this.residents = new ArrayList<Student>();
